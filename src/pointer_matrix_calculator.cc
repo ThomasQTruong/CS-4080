@@ -8,20 +8,21 @@
 
 #include <iostream>
 
+
 const int MIN_SIZE = 1;
 const int MAX_SIZE = 100;
 
 
 void getDimensions(int matrixNumber, int dimensions[2]);
-int **createMatrix(int dimensions[2]);
+int** createMatrix(int dimensions[2]);
 void deleteMatrix(int** matrix, int height);
-void getMatrixValues(const int matrixNumber, int **matrix, const int dimensions[2]);
-void printMatrix(const int matrixNumber, int **matrix, const int dimensions[2]);
+void getMatrixValues(const int matrixNumber, int** matrix, const int dimensions[2]);
+void printMatrix(const int matrixNumber, int** matrix, const int dimensions[2]);
 void printMenu();
-void printSum(int **matrix1, int **matrix2, const int dimensions1[2], const int dimensions2[2]);
-void printDifference(int **matrix1, int **matrix2, const int dimensions1[2],
+void printSum(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]);
+void printDifference(int** matrix1, int** matrix2, const int dimensions1[2],
                      const int dimensions2[2]);
-void printProduct(int **matrix1, int **matrix2, const int dimensions1[2], const int dimensions2[2]);
+void printProduct(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]);
 
 
 int main(void) {
@@ -32,8 +33,8 @@ int main(void) {
   int dimensions2[2] = {0, 0};
   getDimensions(1, dimensions1);
   getDimensions(2, dimensions2);
-  int **matrix1 = createMatrix(dimensions1);
-  int **matrix2 = createMatrix(dimensions2);
+  int** matrix1 = createMatrix(dimensions1);
+  int** matrix2 = createMatrix(dimensions2);
 
   // Get values for matrix 1.
   std::cout << std::endl;
@@ -147,8 +148,8 @@ void getDimensions(int matrixNumber, int dimensions[2]) {
  * @param matrixNumber - the ID number of the matrix.
  * @param dimensions - the array that will contain the user's inputs.
  */
-int **createMatrix(int dimensions[2]) {
-  int **matrix = new int*[dimensions[1]];
+int** createMatrix(int dimensions[2]) {
+  int** matrix = new int*[dimensions[1]];
   // Create array inside of array.
   for (int i = 0; i < dimensions[1]; ++i) {
     matrix[i] = new int[dimensions[0]];
@@ -165,7 +166,7 @@ int **createMatrix(int dimensions[2]) {
  * @param matrix - the matrix to fill out with user input.
  * @param dimensions - the dimensions of the matrix.
  */
-void getMatrixValues(const int matrixNumber, int **matrix, const int dimensions[2]) {
+void getMatrixValues(const int matrixNumber, int** matrix, const int dimensions[2]) {
   std::cout << "===== Matrix " << matrixNumber << " =====" << std::endl;
   std::cout << "Enter " << dimensions[0] * dimensions[1] << " value(s) individually or seperated by space."
             << std::endl;
@@ -186,7 +187,7 @@ void getMatrixValues(const int matrixNumber, int **matrix, const int dimensions[
  * @param matrix - the matrix to print out.
  * @param dimensions - the dimensions of the matrix.
  */
-void printMatrix(const int matrixNumber, int **matrix, const int dimensions[2]) {
+void printMatrix(const int matrixNumber, int** matrix, const int dimensions[2]) {
   std::cout << "----- Matrix " << matrixNumber << " -----" << std::endl;
   // For every row.
   for (int i = 0; i < dimensions[1]; ++i) {
@@ -223,7 +224,7 @@ void printMenu() {
  * @param dimensions1 - the dimensions of the first matrix.
  * @param dimensions2 - the dimensions of the second matrix.
  */
-void printSum(int **matrix1, int **matrix2, const int dimensions1[2], const int dimensions2[2]) {
+void printSum(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]) {
   // Check for same size.
   if (dimensions1[0] != dimensions2[0] || dimensions1[1] != dimensions2[1]) {
     std::cout << "[Sum] ERROR: dimensions are not matching." << std::endl;
@@ -249,7 +250,7 @@ void printSum(int **matrix1, int **matrix2, const int dimensions1[2], const int 
  * @param dimensions1 - the dimensions of the first matrix.
  * @param dimensions2 - the dimensions of the second matrix.
  */
-void printDifference(int **matrix1, int **matrix2, const int dimensions1[2],
+void printDifference(int** matrix1, int** matrix2, const int dimensions1[2],
                      const int dimensions2[2]) {
   // Check for same size.
   if (dimensions1[0] != dimensions2[0] || dimensions1[1] != dimensions2[1]) {
@@ -276,7 +277,7 @@ void printDifference(int **matrix1, int **matrix2, const int dimensions1[2],
  * @param dimensions1 - the dimensions of the first matrix.
  * @param dimensions2 - the dimensions of the second matrix.
  */
-void printProduct(int **matrix1, int **matrix2, const int dimensions1[2],
+void printProduct(int** matrix1, int** matrix2, const int dimensions1[2],
                   const int dimensions2[2]) {
   // Check if matrix1's width == matrix2's height.
   if (dimensions1[0] != dimensions2[1]) {
