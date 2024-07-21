@@ -14,9 +14,9 @@ const int MAX_SIZE = 100;
 
 void getDimensions(int matrixNumber, int dimensions[2]);
 void getMatrixValues(const int matrixNumber, int matrix[MAX_SIZE][MAX_SIZE],
-                     const int width, const int height);
+                     const int dimensions[2]);
 void printMatrix(const int matrixNumber, const int matrix[MAX_SIZE][MAX_SIZE],
-                 const int width, const int height);
+                 const int dimensions[2]);
 void printSum(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
               const int dimensions1[2], const int dimensions2[2]);
 void printDifference(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
@@ -40,13 +40,13 @@ int main(void) {
 
   // Get values for matrix 1.
   std::cout << std::endl;
-  getMatrixValues(1, matrix1, dimensions1[0], dimensions1[1]);
-  printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
+  getMatrixValues(1, matrix1, dimensions1);
+  printMatrix(1, matrix1, dimensions1);
 
   // Get values for matrix 2.
   std::cout << std::endl;
-  getMatrixValues(2, matrix2, dimensions2[0], dimensions2[1]);
-  printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
+  getMatrixValues(2, matrix2, dimensions2);
+  printMatrix(2, matrix2, dimensions2);
 
   bool exit = false;
   int choice = 0;
@@ -70,20 +70,20 @@ int main(void) {
         printProduct(matrix1, matrix2, dimensions1, dimensions2);
         break;
       case 4:  // Print matrix 1.
-        printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
+        printMatrix(1, matrix1, dimensions1);
         break;
       case 5:  // Print matrix 2.
-        printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
+        printMatrix(2, matrix2, dimensions2);
         break;
       case 6:  // Re-input matrix 1.
         getDimensions(1, dimensions1);
-        getMatrixValues(1, matrix1, dimensions1[0], dimensions1[1]);
-        printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
+        getMatrixValues(1, matrix1, dimensions1);
+        printMatrix(1, matrix1, dimensions1);
         break;
       case 7:  // Re-input matrix 2.
         getDimensions(2, dimensions2);
-        getMatrixValues(2, matrix2, dimensions2[0], dimensions2[1]);
-        printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
+        getMatrixValues(2, matrix2, dimensions2);
+        printMatrix(2, matrix2, dimensions2);
         break;
       case 8:  // Exit program.
         exit = true;
@@ -132,18 +132,17 @@ void getDimensions(int matrixNumber, int dimensions[2]) {
  * 
  * @param matrixNumber - the ID number of the matrix.
  * @param matrix - the matrix to fill out with user input.
- * @param width - the width of the matrix.
- * @param height - the height of the matrix.
+ * @param dimensions - the dimensions of the matrix.
  */
 void getMatrixValues(const int matrixNumber, int matrix[MAX_SIZE][MAX_SIZE],
-                     const int width, const int height) {
+                     const int dimensions[2]) {
   std::cout << "===== Matrix " << matrixNumber << " =====" << std::endl;
-  std::cout << "Enter " << width * height << " value(s) individually or seperated by space."
+  std::cout << "Enter " << dimensions[0] * dimensions[1] << " value(s) individually or seperated by space."
             << std::endl;
 
   // Take user input for each valid slot.
-  for (int i = 0; i < height; ++i) {
-    for (int j = 0; j < width; ++j) {
+  for (int i = 0; i < dimensions[1]; ++i) {
+    for (int j = 0; j < dimensions[0]; ++j) {
       std::cin >> matrix[i][j];
     }
   }
@@ -155,16 +154,15 @@ void getMatrixValues(const int matrixNumber, int matrix[MAX_SIZE][MAX_SIZE],
  * 
  * @param matrixNumber - the ID number of the matrix.
  * @param matrix - the matrix to print out.
- * @param width - the width of the matrix.
- * @param height - the height of the matrix.
+ * @param dimensions - the dimensions of the matrix.
  */
 void printMatrix(const int matrixNumber, const int matrix[MAX_SIZE][MAX_SIZE],
-                 const int width, const int height) {
+                 const int dimensions[2]) {
   std::cout << "----- Matrix " << matrixNumber << " -----" << std::endl;
   // For every row.
-  for (int i = 0; i < height; ++i) {
+  for (int i = 0; i < dimensions[1]; ++i) {
     // For every column.
-    for (int j = 0; j < width; ++j) {
+    for (int j = 0; j < dimensions[0]; ++j) {
       std::cout << matrix[i][j] << " ";
     }
     std::cout << std::endl;
