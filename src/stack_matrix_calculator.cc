@@ -253,6 +253,7 @@ void printProduct(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_S
   // Check if matrix1's width == matrix2's height.
   if (dimensions1[0] != dimensions2[1]) {
     std::cout << "[Product] ERROR: matrix 1's width does not match matrix 2's height." << std::endl;
+    return;
   }
 
   std::cout << "[[[ Product ]]]" << std::endl;
