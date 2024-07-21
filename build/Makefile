@@ -6,16 +6,14 @@
 SRC = ../src/
 BIN = ../bin/
 
-# Every object file needed for linking.
-OBJECTS = stack_matrix_calculator.o
-# The path of every object file.
-PATHS = $(foreach path, $(OBJECTS), $(BIN)$(path))
-
 # Function names to run.
-all: main
+all: stack_matrix_calculator pointer_matrix_calculator
 
 # Functions.
-main: $(PATHS)
+stack_matrix_calculator: $(BIN)stack_matrix_calculator.o
+	g++ -o $(BIN)$(basename $^) $^
+
+pointer_matrix_calculator: $(BIN)pointer_matrix_calculator.o
 	g++ -o $(BIN)$(basename $^) $^
 
 # Compile .cpp files to .o files.
@@ -27,6 +25,12 @@ run1:
 	make clean
 	make
 	$(BIN)stack_matrix_calculator
+
+# make run.
+run2:
+	make clean
+	make
+	$(BIN)pointer_matrix_calculator
 
 # make clean.
 clean:
