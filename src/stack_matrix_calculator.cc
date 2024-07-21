@@ -102,6 +102,14 @@ void printMenu() {
 }
 
 
+/**
+ * Calculates and prints the sum of the two matrices.
+ * 
+ * @param matrix1 - the first matrix.
+ * @param matrix2 - the second matrix.
+ * @param dimensions1 - the dimensions of the first matrix.
+ * @param dimensions2 - the dimensions of the second matrix.
+ */
 void printSum(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
               const int dimensions1[2], const int dimensions2[2]) {
   // Check for same size.
@@ -110,6 +118,7 @@ void printSum(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE]
     return;
   }
 
+  // Add each position from both matrices with each other.
   std::cout << "[[[ Sum ]]]" << std::endl;
   for (int i = 0; i < dimensions1[1]; ++i) {
     for (int j = 0; j < dimensions1[0]; ++j) {
@@ -120,6 +129,14 @@ void printSum(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE]
 }
 
 
+/**
+ * Calculates and prints the difference of the two matrices.
+ * 
+ * @param matrix1 - the first matrix.
+ * @param matrix2 - the second matrix.
+ * @param dimensions1 - the dimensions of the first matrix.
+ * @param dimensions2 - the dimensions of the second matrix.
+ */
 void printDifference(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
                      const int dimensions1[2], const int dimensions2[2]) {
   // Check for same size.
@@ -128,6 +145,7 @@ void printDifference(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MA
     return;
   }
 
+  // Subtract each position from both matrices with each other.
   std::cout << "[[[ Difference ]]]" << std::endl;
   for (int i = 0; i < dimensions1[1]; ++i) {
     for (int j = 0; j < dimensions1[0]; ++j) {
@@ -138,6 +156,14 @@ void printDifference(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MA
 }
 
 
+/**
+ * Calculates and prints the product of the two matrices.
+ * 
+ * @param matrix1 - the first matrix.
+ * @param matrix2 - the second matrix.
+ * @param dimensions1 - the dimensions of the first matrix.
+ * @param dimensions2 - the dimensions of the second matrix.
+ */
 void printProduct(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
                   const int dimensions1[2], const int dimensions2[2]) {
   // Check if matrix1's width == matrix2's height.
@@ -146,10 +172,13 @@ void printProduct(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_S
   }
 
   std::cout << "[[[ Product ]]]" << std::endl;
-  for (int i = 0; i < dimensions1[1]; ++i) {  // For each row for matrix1.
-    for (int k = 0; k < dimensions2[0]; ++k) {  // For each column for matrix2.
+  // For each row for matrix 1.
+  for (int i = 0; i < dimensions1[1]; ++i) {
+    // For each column for matrix 2.
+    for (int k = 0; k < dimensions2[0]; ++k) {
       int sum = 0;
-      for (int j = 0; j < dimensions1[0]; ++j) {  // For each column in row for matrix1.
+      // For each column in row for matrix 1.
+      for (int j = 0; j < dimensions1[0]; ++j) {
         sum += matrix1[i][j] * matrix2[j][k];
       }
       std::cout << sum << " ";
