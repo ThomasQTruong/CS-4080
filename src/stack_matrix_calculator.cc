@@ -12,6 +12,92 @@ const int MIN_SIZE = 1;
 const int MAX_SIZE = 100;
 
 
+void getDimensions(int matrixNumber, int dimensions[2]);
+void getMatrixValues(const int matrixNumber, int matrix[MAX_SIZE][MAX_SIZE],
+                     const int width, const int height);
+void printMatrix(const int matrixNumber, const int matrix[MAX_SIZE][MAX_SIZE],
+                 const int width, const int height);
+void printSum(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
+              const int dimensions1[2], const int dimensions2[2]);
+void printDifference(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
+                     const int dimensions1[2], const int dimensions2[2]);
+void printProduct(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_SIZE][MAX_SIZE],
+                  const int dimensions1[2], const int dimensions2[2]);
+void printMenu();
+
+
+int main(void) {
+  std::cout << "[ Stack Matrix Calculator ]" << std::endl;
+
+  // Get dimensions.
+  int dimensions1[2] = {0, 0};
+  int dimensions2[2] = {0, 0};
+  getDimensions(1, dimensions1);
+  getDimensions(2, dimensions2);
+
+  int matrix1[MAX_SIZE][MAX_SIZE];
+  int matrix2[MAX_SIZE][MAX_SIZE];
+
+  // Get values for matrix 1.
+  std::cout << std::endl;
+  getMatrixValues(1, matrix1, dimensions1[0], dimensions1[1]);
+  printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
+
+  // Get values for matrix 2.
+  std::cout << std::endl;
+  getMatrixValues(2, matrix2, dimensions2[0], dimensions2[1]);
+  printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
+
+  bool exit = false;
+  int choice = 0;
+  do {
+    // Get user's choice.
+    std::cout << std::endl;
+    printMenu();
+    std::cout << "Input: ";
+    std::cin >> choice;
+
+    // Process choice.
+    std::cout << std::endl;
+    switch (choice) {
+      case 1:  // Print sum.
+        printSum(matrix1, matrix2, dimensions1, dimensions2);
+        break;
+      case 2:  // Print difference.
+        printDifference(matrix1, matrix2, dimensions1, dimensions2);
+        break;
+      case 3:  // Print product.
+        printProduct(matrix1, matrix2, dimensions1, dimensions2);
+        break;
+      case 4:  // Print matrix 1.
+        printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
+        break;
+      case 5:  // Print matrix 2.
+        printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
+        break;
+      case 6:  // Re-input matrix 1.
+        getDimensions(1, dimensions1);
+        getMatrixValues(1, matrix1, dimensions1[0], dimensions1[1]);
+        printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
+        break;
+      case 7:  // Re-input matrix 2.
+        getDimensions(2, dimensions2);
+        getMatrixValues(2, matrix2, dimensions2[0], dimensions2[1]);
+        printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
+        break;
+      case 8:  // Exit program.
+        exit = true;
+        break;
+    }
+  } while (!exit);
+
+  // User exited.
+  std::cout << "Goodbye!" << std::endl;
+
+  return 0;
+}
+
+
 /**
  * Asks user to input the dimensions of the matrices.
  * 
@@ -185,76 +271,4 @@ void printProduct(const int matrix1[MAX_SIZE][MAX_SIZE], const int matrix2[MAX_S
     }
     std::cout << std::endl;
   }
-}
-
-
-int main(void) {
-  std::cout << "[ Stack Matrix Calculator ]" << std::endl;
-
-  // Get dimensions.
-  int dimensions1[2] = {0, 0};
-  int dimensions2[2] = {0, 0};
-  getDimensions(1, dimensions1);
-  getDimensions(2, dimensions2);
-
-  int matrix1[MAX_SIZE][MAX_SIZE];
-  int matrix2[MAX_SIZE][MAX_SIZE];
-
-  // Get values for matrix 1.
-  std::cout << std::endl;
-  getMatrixValues(1, matrix1, dimensions1[0], dimensions1[1]);
-  printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
-
-  // Get values for matrix 2.
-  std::cout << std::endl;
-  getMatrixValues(2, matrix2, dimensions2[0], dimensions2[1]);
-  printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
-
-  bool exit = false;
-  int choice = 0;
-  do {
-    // Get user's choice.
-    std::cout << std::endl;
-    printMenu();
-    std::cout << "Input: ";
-    std::cin >> choice;
-
-    // Process choice.
-    std::cout << std::endl;
-    switch (choice) {
-      case 1:  // Print sum.
-        printSum(matrix1, matrix2, dimensions1, dimensions2);
-        break;
-      case 2:  // Print difference.
-        printDifference(matrix1, matrix2, dimensions1, dimensions2);
-        break;
-      case 3:  // Print product.
-        printProduct(matrix1, matrix2, dimensions1, dimensions2);
-        break;
-      case 4:  // Print matrix 1.
-        printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
-        break;
-      case 5:  // Print matrix 2.
-        printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
-        break;
-      case 6:  // Re-input matrix 1.
-        getDimensions(1, dimensions1);
-        getMatrixValues(1, matrix1, dimensions1[0], dimensions1[1]);
-        printMatrix(1, matrix1, dimensions1[0], dimensions1[1]);
-        break;
-      case 7:  // Re-input matrix 2.
-        getDimensions(2, dimensions2);
-        getMatrixValues(2, matrix2, dimensions2[0], dimensions2[1]);
-        printMatrix(2, matrix2, dimensions2[0], dimensions2[1]);
-        break;
-      case 8:  // Exit program.
-        exit = true;
-        break;
-    }
-  } while (!exit);
-
-  // User exited.
-  std::cout << "Goodbye!" << std::endl;
-
-  return 0;
 }
