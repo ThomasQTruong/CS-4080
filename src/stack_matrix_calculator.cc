@@ -8,6 +8,7 @@
 
 #include <iostream>
 
+
 const int MIN_SIZE = 1;
 const int MAX_SIZE = 100;
 
