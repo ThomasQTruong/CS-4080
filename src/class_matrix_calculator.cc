@@ -198,7 +198,7 @@ class Matrix {
     for (int i = 0; i < _height; ++i) {
       // For each column for matrix 2.
       for (int k = 0; k < matrix._width; ++k) {
-        int sum = 0;
+        float sum = 0;
         // For each column in row for matrix 1.
         for (int j = 0; j < _width; ++j) {
           sum += _data[i][j] * matrix._data[j][k];
@@ -215,17 +215,17 @@ class Matrix {
   int _id;
   int _width;
   int _height;
-  int** _data;
+  float** _data;
 
 
   /**
    * Allocates the matrix.
    */
   void createMatrix() {
-    _data = new int*[_height];
+    _data = new float*[_height];
     // Create array inside of array.
     for (int i = 0; i < _height; ++i) {
-      _data[i] = new int[_width];
+      _data[i] = new float[_width];
     }
   }
 

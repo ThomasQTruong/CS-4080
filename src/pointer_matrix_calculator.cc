@@ -14,16 +14,16 @@ const int MAX_SIZE = 100;
 
 
 void getDimensions(int matrixNumber, int dimensions[2]);
-int** createMatrix(const int dimensions[2]);
-void deleteMatrix(int** matrix, int height);
-void getMatrixValues(const int matrixNumber, int** matrix, const int dimensions[2]);
-void printMatrix(const int matrixNumber, int** matrix, const int dimensions[2]);
-void printMatrix(int** matrix, const int dimensions[2]);
+float** createMatrix(const int dimensions[2]);
+void deleteMatrix(float** matrix, int height);
+void getMatrixValues(const int matrixNumber, float** matrix, const int dimensions[2]);
+void printMatrix(const int matrixNumber, float** matrix, const int dimensions[2]);
+void printMatrix(float** matrix, const int dimensions[2]);
 void printMenu();
-int** getSum(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]);
-int** getDifference(int** matrix1, int** matrix2, const int dimensions1[2],
+float** getSum(float** matrix1, float** matrix2, const int dimensions1[2], const int dimensions2[2]);
+float** getDifference(float** matrix1, float** matrix2, const int dimensions1[2],
                     const int dimensions2[2]);
-int** getProduct(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]);
+float** getProduct(float** matrix1, float** matrix2, const int dimensions1[2], const int dimensions2[2]);
 
 
 int main(void) {
@@ -34,8 +34,8 @@ int main(void) {
   int dimensions2[2] = {0, 0};
   getDimensions(1, dimensions1);
   getDimensions(2, dimensions2);
-  int** matrix1 = createMatrix(dimensions1);
-  int** matrix2 = createMatrix(dimensions2);
+  float** matrix1 = createMatrix(dimensions1);
+  float** matrix2 = createMatrix(dimensions2);
 
   // Get values for matrix 1.
   std::cout << std::endl;
@@ -60,7 +60,7 @@ int main(void) {
     std::cout << std::endl;
     switch (choice) {
       case 1: {  // Print sum.
-        int** sum = getSum(matrix1, matrix2, dimensions1, dimensions2);
+        float** sum = getSum(matrix1, matrix2, dimensions1, dimensions2);
 
         if (sum != nullptr) {
           std::cout << "[[[ Sum ]]]" << std::endl;
@@ -71,7 +71,7 @@ int main(void) {
         break;
       }
       case 2: {  // Print difference.
-        int** difference = getDifference(matrix1, matrix2, dimensions1, dimensions2);
+        float** difference = getDifference(matrix1, matrix2, dimensions1, dimensions2);
 
         if (difference != nullptr) {
           std::cout << "[[[ Difference ]]]" << std::endl;
@@ -82,7 +82,7 @@ int main(void) {
         break;
       }
       case 3: {  // Print product.
-        int** product = getProduct(matrix1, matrix2, dimensions1, dimensions2);
+        float** product = getProduct(matrix1, matrix2, dimensions1, dimensions2);
 
         if (product != nullptr) {
           std::cout << "[[[ Product ]]]" << std::endl;
@@ -136,7 +136,7 @@ int main(void) {
  * @param matrix - the matrix to unallocate memory for.
  * @param height - the height of the matrix.
  */
-void deleteMatrix(int** matrix, int height) {
+void deleteMatrix(float** matrix, int height) {
   // For each row, delete array.
   for (int i = 0; i < height; ++i) {
     delete[] matrix[i];
@@ -179,11 +179,11 @@ void getDimensions(int matrixNumber, int dimensions[2]) {
  * 
  * @param dimensions - the matrix's dimensions.
  */
-int** createMatrix(const int dimensions[2]) {
-  int** matrix = new int*[dimensions[1]];
+float** createMatrix(const int dimensions[2]) {
+  float** matrix = new float*[dimensions[1]];
   // Create array inside of array.
   for (int i = 0; i < dimensions[1]; ++i) {
-    matrix[i] = new int[dimensions[0]];
+    matrix[i] = new float[dimensions[0]];
   }
 
   return matrix;
@@ -197,7 +197,7 @@ int** createMatrix(const int dimensions[2]) {
  * @param matrix - the matrix to fill out with user input.
  * @param dimensions - the dimensions of the matrix.
  */
-void getMatrixValues(const int matrixNumber, int** matrix, const int dimensions[2]) {
+void getMatrixValues(const int matrixNumber, float** matrix, const int dimensions[2]) {
   std::cout << "===== Matrix " << matrixNumber << " =====" << std::endl;
   std::cout << "Enter " << dimensions[0] * dimensions[1] << " value(s) individually or seperated by space."
             << std::endl;
@@ -218,7 +218,7 @@ void getMatrixValues(const int matrixNumber, int** matrix, const int dimensions[
  * @param matrix - the matrix to print out.
  * @param dimensions - the dimensions of the matrix.
  */
-void printMatrix(const int matrixNumber, int** matrix, const int dimensions[2]) {
+void printMatrix(const int matrixNumber, float** matrix, const int dimensions[2]) {
   std::cout << "----- Matrix " << matrixNumber << " -----" << std::endl;
   // For every row.
   for (int i = 0; i < dimensions[1]; ++i) {
@@ -237,7 +237,7 @@ void printMatrix(const int matrixNumber, int** matrix, const int dimensions[2]) 
  * @param matrix - the matrix to print out.
  * @param dimensions - the dimensions of the matrix.
  */
-void printMatrix(int** matrix, const int dimensions[2]) {
+void printMatrix(float** matrix, const int dimensions[2]) {
   // For every row.
   for (int i = 0; i < dimensions[1]; ++i) {
     // For every column.
@@ -273,14 +273,14 @@ void printMenu() {
  * @param dimensions1 - the dimensions of the first matrix.
  * @param dimensions2 - the dimensions of the second matrix.
  */
-int** getSum(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]) {
+float** getSum(float** matrix1, float** matrix2, const int dimensions1[2], const int dimensions2[2]) {
   // Check for same size.
   if (dimensions1[0] != dimensions2[0] || dimensions1[1] != dimensions2[1]) {
     return nullptr;
   }
 
   // Add each position from both matrices with each other.
-  int** sum = createMatrix(dimensions1);
+  float** sum = createMatrix(dimensions1);
   for (int i = 0; i < dimensions1[1]; ++i) {
     for (int j = 0; j < dimensions1[0]; ++j) {
       sum[i][j] = matrix1[i][j] + matrix2[i][j];
@@ -299,7 +299,7 @@ int** getSum(int** matrix1, int** matrix2, const int dimensions1[2], const int d
  * @param dimensions1 - the dimensions of the first matrix.
  * @param dimensions2 - the dimensions of the second matrix.
  */
-int** getDifference(int** matrix1, int** matrix2, const int dimensions1[2],
+float** getDifference(float** matrix1, float** matrix2, const int dimensions1[2],
                     const int dimensions2[2]) {
   // Check for same size.
   if (dimensions1[0] != dimensions2[0] || dimensions1[1] != dimensions2[1]) {
@@ -307,7 +307,7 @@ int** getDifference(int** matrix1, int** matrix2, const int dimensions1[2],
   }
 
   // Subtract each position from both matrices with each other.
-  int** difference = createMatrix(dimensions1);
+  float** difference = createMatrix(dimensions1);
   for (int i = 0; i < dimensions1[1]; ++i) {
     for (int j = 0; j < dimensions1[0]; ++j) {
       difference[i][j] = matrix1[i][j] - matrix2[i][j];
@@ -326,7 +326,7 @@ int** getDifference(int** matrix1, int** matrix2, const int dimensions1[2],
  * @param dimensions1 - the dimensions of the first matrix.
  * @param dimensions2 - the dimensions of the second matrix.
  */
-int** getProduct(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]) {
+float** getProduct(float** matrix1, float** matrix2, const int dimensions1[2], const int dimensions2[2]) {
   // Check if matrix1's width == matrix2's height.
   if (dimensions1[0] != dimensions2[1]) {
     return nullptr;
@@ -334,13 +334,13 @@ int** getProduct(int** matrix1, int** matrix2, const int dimensions1[2], const i
 
   // Matrix 1's height & matrix 2's width = new matrix's dimensions.
   int dimensions[2] = {dimensions1[1], dimensions2[0]};
-  int** product = createMatrix(dimensions);
+  float** product = createMatrix(dimensions);
 
   // For each row for matrix 1.
   for (int i = 0; i < dimensions1[1]; ++i) {
     // For each column for matrix 2.
     for (int k = 0; k < dimensions2[0]; ++k) {
-      int sum = 0;
+      float sum = 0;
       // For each column in row for matrix 1.
       for (int j = 0; j < dimensions1[0]; ++j) {
         sum += matrix1[i][j] * matrix2[j][k];

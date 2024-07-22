@@ -13,13 +13,14 @@ import java.util.Scanner;
 public class Matrix {
   public static final int MIN_SIZE = 1;
   public static final int MAX_SIZE = 100;
-  public static Scanner input = new Scanner(System.in);
+  public static Scanner intInput = new Scanner(System.in);
+  public static Scanner floatInput = new Scanner(System.in);
 
 
   private int _id;
   private int _width;
   private int _height;
-  private int[][] _data;
+  private float[][] _data;
 
 
   /**
@@ -82,8 +83,8 @@ public class Matrix {
     // Get input and repeat if invalid (invalid = MIN_SIZE < x > MAX_SIZE).
     do {
       System.out.print("Dimensions <x y>: ");
-      _width = input.nextInt();
-      _height = input.nextInt();
+      _width = intInput.nextInt();
+      _height = intInput.nextInt();
 
       // Validate input.
       if (_width < MIN_SIZE || _height < MIN_SIZE) {
@@ -110,7 +111,7 @@ public class Matrix {
     // Take user input for each valid slot.
     for (int i = 0; i < _height; ++i) {
       for (int j = 0; j < _width; ++j) {
-        _data[i][j] = input.nextInt();
+        _data[i][j] = floatInput.nextFloat();
       }
     }
   }
@@ -187,7 +188,7 @@ public class Matrix {
     for (int i = 0; i < _height; ++i) {
       // For each column for matrix 2.
       for (int k = 0; k < matrix._width; ++k) {
-        int sum = 0;
+        float sum = 0;
         // For each column in row for matrix 1.
         for (int j = 0; j < _width; ++j) {
           sum += _data[i][j] * matrix._data[j][k];
@@ -217,7 +218,7 @@ public class Matrix {
    * Allocates the matrix.
    */
   private void createMatrix() {
-    _data = new int[_height][_width];
+    _data = new float[_height][_width];
   }
 
 
@@ -263,7 +264,7 @@ public class Matrix {
       System.out.println();
       printMenu();
       System.out.print("Input: ");
-      choice = input.nextInt();
+      choice = intInput.nextInt();
 
       // Process choice.
       System.out.println();
@@ -331,8 +332,10 @@ public class Matrix {
         }
       }
     } while (!exit);
-
-    // User exited; unallocate matrices.
+    
+    // User exited; close scanners.
+    intInput.close();
+    floatInput.close();
     System.out.println("Goodbye!");
 
     return;
