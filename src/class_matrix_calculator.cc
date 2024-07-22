@@ -18,7 +18,14 @@ void printMenu();
 
 class Matrix {
  public:
-  // Constructors.
+  /**
+   * Constructor.
+   *
+   * @param id - the ID number of the matrix.
+   * @param width - the width of the matrix.
+   * @param height - the height of the matrix.
+   * @throws std::invalid_argument - invalid width/height error.
+   */
   Matrix(int id, int width, int height) {
     // Invalid width/height.
     if (width < MIN_SIZE || width > MAX_SIZE) {
@@ -37,6 +44,12 @@ class Matrix {
 
     createMatrix();
   }
+
+  /**
+   * Constructor.
+   * 
+   * @param id - the ID number of the matrix.
+   */
   explicit Matrix(int id) {
     _id = id;
 
@@ -44,7 +57,9 @@ class Matrix {
   }
 
 
-  // Destructor.
+  /**
+   * Destructor.
+   */
   ~Matrix() {
     // Data doesn't exist.
     if (_data == nullptr) {
@@ -121,6 +136,7 @@ class Matrix {
    * 
    * @param matrix - the rhs matrix to be added.
    * @param Matrix - the sum matrix.
+   * @throws std::string - invalid dimensions.
    */
   Matrix operator+(const Matrix &matrix) {
     // Check for same size.
@@ -145,6 +161,7 @@ class Matrix {
    * 
    * @param matrix - the rhs matrix to be subtracted.
    * @param Matrix - the difference matrix.
+   * @throws std::string - invalid dimensions.
    */
   Matrix operator-(const Matrix &matrix) {
     // Check for same size.
@@ -169,6 +186,7 @@ class Matrix {
    * 
    * @param matrix - the rhs matrix to be multiplied.
    * @param Matrix - the product matrix.
+   * @throws std::string - invalid dimensions.
    */
   Matrix operator*(const Matrix &matrix) {
     // Check for same size.
