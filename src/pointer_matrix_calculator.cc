@@ -61,26 +61,36 @@ int main(void) {
     switch (choice) {
       case 1: {  // Print sum.
         int** sum = getSum(matrix1, matrix2, dimensions1, dimensions2);
+
         if (sum != nullptr) {
           std::cout << "[[[ Sum ]]]" << std::endl;
           printMatrix(sum, dimensions1);
+        } else {  // Invalid dimensions.
+          std::cout << "[Sum] ERROR: dimensions are not matching." << std::endl;
         }
         break;
       }
       case 2: {  // Print difference.
         int** difference = getDifference(matrix1, matrix2, dimensions1, dimensions2);
+
         if (difference != nullptr) {
           std::cout << "[[[ Difference ]]]" << std::endl;
           printMatrix(difference, dimensions1);
+        } else {  // Invalid dimensions.
+          std::cout << "[Difference] ERROR: dimensions are not matching." << std::endl;
         }
         break;
       }
       case 3: {  // Print product.
         int** product = getProduct(matrix1, matrix2, dimensions1, dimensions2);
+
         if (product != nullptr) {
           std::cout << "[[[ Product ]]]" << std::endl;
           int dimensions[2] = {dimensions1[1], dimensions2[0]};
           printMatrix(product, dimensions);
+        } else {  // Invalid dimensions.
+          std::cout << "[Product] ERROR: matrix 1's width does not match matrix 2's height."
+                    << std::endl;
         }
         break;
       }
@@ -266,7 +276,6 @@ void printMenu() {
 int** getSum(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]) {
   // Check for same size.
   if (dimensions1[0] != dimensions2[0] || dimensions1[1] != dimensions2[1]) {
-    std::cout << "[Sum] ERROR: dimensions are not matching." << std::endl;
     return nullptr;
   }
 
@@ -294,7 +303,6 @@ int** getDifference(int** matrix1, int** matrix2, const int dimensions1[2],
                     const int dimensions2[2]) {
   // Check for same size.
   if (dimensions1[0] != dimensions2[0] || dimensions1[1] != dimensions2[1]) {
-    std::cout << "[Difference] ERROR: dimensions are not matching." << std::endl;
     return nullptr;
   }
 
@@ -321,7 +329,6 @@ int** getDifference(int** matrix1, int** matrix2, const int dimensions1[2],
 int** getProduct(int** matrix1, int** matrix2, const int dimensions1[2], const int dimensions2[2]) {
   // Check if matrix1's width == matrix2's height.
   if (dimensions1[0] != dimensions2[1]) {
-    std::cout << "[Product] ERROR: matrix 1's width does not match matrix 2's height." << std::endl;
     return nullptr;
   }
 
