@@ -16,3 +16,12 @@
   2. C/C++ version that uses a pointer to a pointer (**p) that is allocated memory using new or malloc to create the 2D matrices. Provide 3 functions, one for addition, subtraction and multiplication respectively, that take in the two matrices and return the result back (as a new matrix which is also declared as a pointer to a pointer)
   3. C/C++ version that uses a pointer to a pointer as a private data in a class called matrix (create this class) and add overloaded operator functions (+ for addition, - for subtraction and * for multiplication) to the class for doing the matrix operations. Add other appropriate member functions, like constructors, destructors and any other helper functions.
   4. Create a Java Class called matrix and uses arrays and add appropriate methods for the matrix operations.
+
+## Usage
+### Uniux
+  1. Change to build directory: `cd build`.
+  2. Run any program with:
+      - stack_matrix_calculator.cc: `make run1`
+      - pointer_matrix_calculator.cc: `make run2`
+      - class_matrix_calculator.cc: `make run3`
+      - Matrix.java: `make run4`
