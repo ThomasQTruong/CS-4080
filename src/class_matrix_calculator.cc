@@ -86,9 +86,6 @@ class Matrix {
 
   /**
    * Asks user to input the dimensions of the matrices.
-   * 
-   * @param matrixNumber - the ID number of the matrix.
-   * @param dimensions - the array that will contain the user's inputs.
    */
   void getDimensions() {
     std::cout << "Enter the dimensions for matrix " << _id << " (width x height)." << std::endl;
@@ -264,11 +261,13 @@ int main(void) {
   // Get values for matrix 1.
   std::cout << std::endl;
   matrix1.getMatrixValues();
+  std::cout << "----- Matrix " << std::to_string(matrix1.getID()) << " -----\n";
   std::cout << matrix1;
 
   // Get values for matrix 2.
   std::cout << std::endl;
   matrix2.getMatrixValues();
+  std::cout << "----- Matrix " << std::to_string(matrix2.getID()) << " -----\n";
   std::cout << matrix2;
 
   bool exit = false;
@@ -326,12 +325,14 @@ int main(void) {
       case 6: {  // Re-input matrix 1.
         matrix1.getDimensions();
         matrix1.getMatrixValues();
+        std::cout << "----- Matrix " << std::to_string(matrix1.getID()) << " -----\n";
         std::cout << matrix1;
         break;
       }
       case 7: {  // Re-input matrix 2.
         matrix2.getDimensions();
         matrix2.getMatrixValues();
+        std::cout << "----- Matrix " << std::to_string(matrix2.getID()) << " -----\n";
         std::cout << matrix2;
         break;
       }
