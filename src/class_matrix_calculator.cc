@@ -135,7 +135,7 @@ class Matrix {
    * Operator overload for addition.
    * 
    * @param matrix - the rhs matrix to be added.
-   * @param Matrix - the sum matrix.
+   * @return Matrix - the sum matrix.
    * @throws std::string - invalid dimensions.
    */
   Matrix operator+(const Matrix &matrix) {
@@ -160,7 +160,7 @@ class Matrix {
    * Operator overload for subtraction.
    * 
    * @param matrix - the rhs matrix to be subtracted.
-   * @param Matrix - the difference matrix.
+   * @return Matrix - the difference matrix.
    * @throws std::string - invalid dimensions.
    */
   Matrix operator-(const Matrix &matrix) {
@@ -185,7 +185,7 @@ class Matrix {
    * Operator overload for multiplication.
    * 
    * @param matrix - the rhs matrix to be multiplied.
-   * @param Matrix - the product matrix.
+   * @return Matrix - the product matrix.
    * @throws std::string - invalid dimensions.
    */
   Matrix operator*(const Matrix &matrix) {
